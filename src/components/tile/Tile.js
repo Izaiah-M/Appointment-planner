@@ -5,9 +5,17 @@ export const Tile = ({ contactDetails }) => {
     <div className="tile-container">
       {Object.keys(contactDetails).map((key, index) => {
         if (index === 0) {
-          return <p key={index}>{contactDetails[key]}</p>;
+          return (
+            <p key={index} className="tile-title">
+              {contactDetails[key]}
+            </p>
+          );
         } else {
-          return <p key={index}>{contactDetails[key]}</p>;
+          return (
+            <p key={index} className="tile">
+              {contactDetails[key]}
+            </p>
+          );
         }
       })}
     </div>
