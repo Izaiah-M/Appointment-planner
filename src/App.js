@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { AppointmentsPage } from "./containers/appointmentsPage/AppointmentsPage";
 import { ContactsPage } from "./containers/contactsPage/ContactsPage";
@@ -10,6 +10,19 @@ function App() {
   Define state variables for 
   contacts and appointments 
   */
+  const [contacts, setContacts] = useState([
+    {
+      name: "Izaiah",
+      phoneNumber: "0767106452",
+      email: "imukisa024@gmail.com",
+    },
+    {
+      name: "Mama",
+      phoneNumber: "0757106410",
+      email: "mamma@mail.com",
+    },
+  ]);
+  const [appointments, setAppointments] = useState([]);
 
   const ROUTES = {
     CONTACTS: "/contacts",
@@ -20,6 +33,28 @@ function App() {
   Implement functions to add data to
   contacts and appointments
   */
+  const addContact = (name, phoneNumber, email) => {
+    setContacts((prev) => [
+      ...prev,
+      {
+        name: name,
+        phoneNumber: phoneNumber,
+        email: email,
+      },
+    ]);
+  };
+
+  const addAppointment = (title, contact, date, time) => {
+    setAppointments((prev) => [
+      ...prev,
+      {
+        title: title,
+        contact: contact,
+        date: date,
+        time: time,
+      },
+    ]);
+  };
 
   return (
     <>
@@ -29,9 +64,27 @@ function App() {
       </nav>
       <main>
         <Routes>
-          <Route path="/" redirect={ROUTES.CONTACTS} />
-          <Route path={ROUTES.APPOINTMENTS} element={<AppointmentsPage />} />
-          <Route path={ROUTES.CONTACTS} element={<ContactsPage />} />
+          <Route
+            path="/"
+            element={
+              <ContactsPage contacts={contacts} addContact={addContact} />
+            }
+          />
+          <Route
+            path={ROUTES.APPOINTMENTS}
+            element={
+              <AppointmentsPage
+                appointments={appointments}
+                addAppointment={addAppointment}
+              />
+            }
+          />
+          <Route
+            path={ROUTES.CONTACTS}
+            element={
+              <ContactsPage contacts={contacts} addContact={addContact} />
+            }
+          />
         </Routes>
       </main>
     </>
