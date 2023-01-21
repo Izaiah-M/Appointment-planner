@@ -1,8 +1,9 @@
 import React from "react";
-import { Switch, Route, Redirect, NavLink } from "react-router-dom";
 
 import { AppointmentsPage } from "./containers/appointmentsPage/AppointmentsPage";
 import { ContactsPage } from "./containers/contactsPage/ContactsPage";
+
+import { Route, Routes, NavLink } from "react-router-dom";
 
 function App() {
   /*
@@ -23,27 +24,15 @@ function App() {
   return (
     <>
       <nav>
-        <NavLink to={ROUTES.CONTACTS} activeClassName="active">
-          Contacts
-        </NavLink>
-        <NavLink to={ROUTES.APPOINTMENTS} activeClassName="active">
-          Appointments
-        </NavLink>
+        <NavLink to={ROUTES.CONTACTS}>Contacts</NavLink>
+        <NavLink to={ROUTES.APPOINTMENTS}>Appointments</NavLink>
       </nav>
       <main>
-        <Switch>
-          <Route exact path="/">
-            <Redirect to={ROUTES.CONTACTS} />
-          </Route>
-          <Route path={ROUTES.CONTACTS}>
-            {/* Add props to ContactsPage */}
-            <ContactsPage />
-          </Route>
-          <Route path={ROUTES.APPOINTMENTS}>
-            {/* Add props to AppointmentsPage */}
-            <AppointmentsPage />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route path="/" redirect={ROUTES.CONTACTS} />
+          <Route path={ROUTES.APPOINTMENTS} element={<AppointmentsPage />} />
+          <Route path={ROUTES.CONTACTS} element={<ContactsPage />} />
+        </Routes>
       </main>
     </>
   );
