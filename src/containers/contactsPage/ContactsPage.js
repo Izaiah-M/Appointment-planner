@@ -30,14 +30,13 @@ export const ContactsPage = ({ contacts, addContact }) => {
 
     if (duplicate === false) {
       addContact(name, email, phoneNumber);
-
       setEmail("");
       setName("");
       setPhoneNumber("");
+      alert("Contact succesfully added!");
     }
 
     if (duplicate === true) {
-      alert("Contact Name already exists exists!!");
       // console.log("Exists");
       setEmail("");
       setName("");
@@ -47,7 +46,10 @@ export const ContactsPage = ({ contacts, addContact }) => {
 
   useEffect(() => {
     setDuplicate(contacts.some((contact) => contact.name === name));
-  }, [name, contacts]);
+    if (duplicate === true) {
+      alert("Contact name already exists exists!!");
+    }
+  }, [name, contacts, duplicate]);
 
   return (
     <div>
