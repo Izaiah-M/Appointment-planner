@@ -4,14 +4,10 @@ import { ContactForm } from "../../components/contactForm/ContactForm";
 import { TileList } from "../../components/tileList/TileList";
 
 export const ContactsPage = ({ contacts, addContact }) => {
-  /*
-  Define state variables for 
-  contact info and duplicate check
-  */
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  // const [duplicate, setDuplicate] = useState(false);
+  const [duplicate, setDuplicate] = useState(false);
 
   const settName = ({ target }) => {
     const newName = target.value;
@@ -32,28 +28,26 @@ export const ContactsPage = ({ contacts, addContact }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    addContact(name, email, phoneNumber);
+    if (duplicate === false) {
+      addContact(name, email, phoneNumber);
 
-    setEmail("");
-    setName("");
-    setPhoneNumber("");
+      setEmail("");
+      setName("");
+      setPhoneNumber("");
+    }
+
+    if (duplicate === true) {
+      alert("Contact Name already exists exists!!");
+      // console.log("Exists");
+      setEmail("");
+      setName("");
+      setPhoneNumber("");
+    }
   };
 
-  /*
-  Using hooks, check for contact name in the 
-  contacts array variable in props
-  */
-  // useEffect(() => {
-  //   contacts.forEach((contact) => {
-  //     if (contact.name === name) {
-  //       setDuplicate(true);
-  //       alert("Contact already exists");
-  //       console.log("Contact already exists!!");
-  //     } else {
-  //       setDuplicate(false);
-  //     }
-  //   });
-  // }, [duplicate]);
+  useEffect(() => {
+    setDuplicate(contacts.some((contact) => contact.name === name));
+  }, [name, contacts]);
 
   return (
     <div>
