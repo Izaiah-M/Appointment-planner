@@ -29,10 +29,10 @@ function App() {
     setAppointments((prev) => [
       ...prev,
       {
-        title: title,
-        contact: contact,
-        date: date,
-        time: time,
+        title: `Title: ${title}`,
+        contact: `Contact: ${contact}`,
+        date: `Date: ${date}`,
+        time: `Time: ${time}`,
       },
     ]);
   };

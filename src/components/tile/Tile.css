@@ -1,0 +1,31 @@
+.tile-container {
+  border: blueviolet 1px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 30px;
+  border-radius: 5px;
+}
+
+.tile-container:hover {
+  background-color: rgba(137, 43, 226, 0.815);
+  transform: translateY(-5px);
+  transition: 0.3s;
+  color: yellow;
+  font-weight: bold;
+}
+
+.tile-title {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.tile {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 10px;
+}
