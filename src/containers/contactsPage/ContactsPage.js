@@ -33,7 +33,6 @@ export const ContactsPage = ({ contacts, addContact }) => {
       setEmail("");
       setName("");
       setPhoneNumber("");
-      // alert("Contact succesfully added!");
     }
 
     if (duplicate === true) {
@@ -47,9 +46,6 @@ export const ContactsPage = ({ contacts, addContact }) => {
 
   useEffect(() => {
     setDuplicate(contacts.some((contact) => contact.name === name));
-    // if (duplicate === true) {
-    //   alert("Contact name already exists exists!!");
-    // }
   }, [name, contacts]);
 
   return (
@@ -69,7 +65,7 @@ export const ContactsPage = ({ contacts, addContact }) => {
       <hr />
       <section>
         <h2>Contacts</h2>
-        <TileList contacts={contacts} />
+        <TileList object={contacts} />
       </section>
     </div>
   );
