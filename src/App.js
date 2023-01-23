@@ -47,7 +47,7 @@ function App() {
       <main>
         <Routes>
           <Route
-            path="/"
+            path="/Appointment-planner"
             element={
               <ContactsPage contacts={contacts} addContact={addContact} />
             }
